@@ -1,0 +1,11 @@
+{
+    "require": {
+        "civicrm/civicrm-core": "^5.44",
+        "civicrm/civicrm-packages": "dev-master"
+    },
+    "extra": {
+        "compile-whitelist": ["civicrm/civicrm-core", "civicrm/composer-compile-lib"],
+        "enable-patching": "true"
+    },
+    "minimum-stability": "dev"
+}
