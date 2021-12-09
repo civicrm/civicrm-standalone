@@ -13,9 +13,11 @@ function invoke() {
     print CRM_Core_Invoke::invoke(explode('/', $_GET[$urlVar]));
   }
   elseif (!empty($_SERVER['REQUEST_URI'])) {
-    $parts = explode('/', $_SERVER['REQUEST_URI']);
-    $parts = array_values(array_filter($parts));
-    print CRM_Core_Invoke::invoke($parts);
+    $parts = explode('?', $_SERVER['REQUEST_URI']);
+    $args = explode('/', $parts[0]);
+    // Remove empty values
+    $args = array_values(array_filter($args));
+    print CRM_Core_Invoke::invoke($args);
   }
   else {
     print CRM_Core_Invoke::invoke(explode('/', $_GET[$urlVar]));
