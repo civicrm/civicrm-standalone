@@ -1,11 +1,16 @@
 {
     "require": {
         "civicrm/civicrm-core": "^5.44",
-        "civicrm/civicrm-packages": "dev-master"
+        "civicrm/civicrm-packages": "dev-master",
+        "civicrm/civicrm-asset-plugin": "~1.1"
     },
     "extra": {
         "compile-whitelist": ["civicrm/civicrm-core", "civicrm/composer-compile-lib"],
-        "enable-patching": "true"
+        "enable-patching": "true",
+        "civicrm-asset": {
+            "path": "web/assets/civicrm",
+            "url": "/assets/civicrm"
+        }
     },
     "minimum-stability": "dev"
 }
