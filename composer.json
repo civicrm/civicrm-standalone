@@ -1,8 +1,9 @@
 {
     "require": {
-        "civicrm/civicrm-core": "^5.44",
-        "civicrm/civicrm-packages": "dev-master",
-        "civicrm/civicrm-asset-plugin": "~1.1"
+        "civicrm/civicrm-core": "5.44",
+        "civicrm/civicrm-packages": "5.44",
+        "civicrm/civicrm-asset-plugin": "~1.1",
+        "cweagans/composer-patches": "1.7"
     },
     "extra": {
         "compile-whitelist": ["civicrm/civicrm-core", "civicrm/composer-compile-lib"],
