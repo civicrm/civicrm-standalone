@@ -11,6 +11,8 @@ function invoke() {
   }
 
   if (!empty($_SERVER['REQUEST_URI'])) {
+    // Required so that the userID is set before generating the menu
+    \CRM_Core_Session::singleton()->initialize();
     // Add CSS, JS, etc. that is required for this page.
     \CRM_Core_Resources::singleton()->addCoreResources();
 
