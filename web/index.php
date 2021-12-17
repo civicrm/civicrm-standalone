@@ -33,7 +33,7 @@ function invoke() {
 
 if (file_exists('../civicrm.settings.php')) {
   require_once '../vendor/autoload.php';
-  require_once '../civicrm.settings.php';
+  require_once '../data/civicrm.settings.php';
   invoke();
 }
 else {
