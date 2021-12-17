@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "578bb85f72bb6fd1de0205a4057152d0",
+    "content-hash": "c7d9d4fa9dbb0343b46d7a22d53270aa",
     "packages": [
         {
             "name": "adrienrn/php-mimetyper",
@@ -335,16 +335,16 @@
         },
         {
             "name": "civicrm/civicrm-core",
-            "version": "5.45.x-dev",
+            "version": "5.44.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/civicrm/civicrm-core.git",
-                "reference": "c0b7d420e9ef4aec121a2e9c9e02ebd9b9de559f"
+                "reference": "0f74c2a025023a0590ed7df1f1ee1bd7714d34c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/civicrm/civicrm-core/zipball/c0b7d420e9ef4aec121a2e9c9e02ebd9b9de559f",
-                "reference": "c0b7d420e9ef4aec121a2e9c9e02ebd9b9de559f",
+                "url": "https://api.github.com/repos/civicrm/civicrm-core/zipball/0f74c2a025023a0590ed7df1f1ee1bd7714d34c6",
+                "reference": "0f74c2a025023a0590ed7df1f1ee1bd7714d34c6",
                 "shasum": ""
             },
             "require": {
@@ -789,7 +789,7 @@
             ],
             "description": "Open source constituent relationship management for non-profits, NGOs and advocacy organizations.",
             "support": {
-                "source": "https://github.com/civicrm/civicrm-core/tree/5.45"
+                "source": "https://github.com/civicrm/civicrm-core/tree/5.44.0"
             },
             "funding": [
                 {
@@ -797,7 +797,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-12-09T01:42:22+00:00"
+            "time": "2021-12-02T05:48:42+00:00"
         },
         {
             "name": "civicrm/civicrm-cxn-rpc",
@@ -842,26 +842,25 @@
         },
         {
             "name": "civicrm/civicrm-packages",
-            "version": "dev-master",
+            "version": "5.44.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/civicrm/civicrm-packages.git",
-                "reference": "d4f302cb94a2c132cf55b2acd7c6f1a4b0b7a403"
+                "reference": "113e3f95af2824f2b95437795dfedc64dcc282cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/civicrm/civicrm-packages/zipball/d4f302cb94a2c132cf55b2acd7c6f1a4b0b7a403",
-                "reference": "d4f302cb94a2c132cf55b2acd7c6f1a4b0b7a403",
+                "url": "https://api.github.com/repos/civicrm/civicrm-packages/zipball/113e3f95af2824f2b95437795dfedc64dcc282cc",
+                "reference": "113e3f95af2824f2b95437795dfedc64dcc282cc",
                 "shasum": ""
             },
-            "default-branch": true,
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
             "description": "Legacy third party dependencies for CiviCRM",
             "support": {
-                "source": "https://github.com/civicrm/civicrm-packages/tree/master"
+                "source": "https://github.com/civicrm/civicrm-packages/tree/5.44.0"
             },
-            "time": "2021-11-16T00:55:37+00:00"
+            "time": "2021-10-12T20:54:53+00:00"
         },
         {
             "name": "civicrm/composer-compile-lib",
@@ -1035,16 +1034,16 @@
         },
         {
             "name": "cweagans/composer-patches",
-            "version": "1.x-dev",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cweagans/composer-patches.git",
-                "reference": "9888dcc74993c030b75f3dd548bb5e20cdbd740c"
+                "reference": "ae02121445ad75f4eaff800cc532b5e6233e2ddf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cweagans/composer-patches/zipball/9888dcc74993c030b75f3dd548bb5e20cdbd740c",
-                "reference": "9888dcc74993c030b75f3dd548bb5e20cdbd740c",
+                "url": "https://api.github.com/repos/cweagans/composer-patches/zipball/ae02121445ad75f4eaff800cc532b5e6233e2ddf",
+                "reference": "ae02121445ad75f4eaff800cc532b5e6233e2ddf",
                 "shasum": ""
             },
             "require": {
@@ -1077,9 +1076,9 @@
             "description": "Provides a way to patch Composer packages.",
             "support": {
                 "issues": "https://github.com/cweagans/composer-patches/issues",
-                "source": "https://github.com/cweagans/composer-patches/tree/1.x"
+                "source": "https://github.com/cweagans/composer-patches/tree/1.7.0"
             },
-            "time": "2021-06-08T15:12:46+00:00"
+            "time": "2020-09-30T17:56:20+00:00"
         },
         {
             "name": "dflydev/apache-mime-types",
@@ -3743,29 +3742,33 @@
         },
         {
             "name": "sabberworm/php-css-parser",
-            "version": "8.3.1",
+            "version": "8.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sabberworm/PHP-CSS-Parser.git",
-                "reference": "d217848e1396ef962fb1997cf3e2421acba7f796"
+                "reference": "e41d2140031d533348b2192a83f02d8dd8a71d30"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sabberworm/PHP-CSS-Parser/zipball/d217848e1396ef962fb1997cf3e2421acba7f796",
-                "reference": "d217848e1396ef962fb1997cf3e2421acba7f796",
+                "url": "https://api.github.com/repos/sabberworm/PHP-CSS-Parser/zipball/e41d2140031d533348b2192a83f02d8dd8a71d30",
+                "reference": "e41d2140031d533348b2192a83f02d8dd8a71d30",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.2"
+                "ext-iconv": "*",
+                "php": ">=5.6.20"
             },
             "require-dev": {
                 "codacy/coverage": "^1.4",
-                "phpunit/phpunit": "~4.8"
+                "phpunit/phpunit": "^4.8.36"
+            },
+            "suggest": {
+                "ext-mbstring": "for parsing UTF-8 CSS"
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "Sabberworm\\CSS": "lib/"
+                "psr-4": {
+                    "Sabberworm\\CSS\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3778,7 +3781,7 @@
                 }
             ],
             "description": "Parser for CSS Files written in PHP",
-            "homepage": "http://www.sabberworm.com/blog/2010/6/10/php-css-parser",
+            "homepage": "https://www.sabberworm.com/blog/2010/6/10/php-css-parser",
             "keywords": [
                 "css",
                 "parser",
@@ -3786,9 +3789,9 @@
             ],
             "support": {
                 "issues": "https://github.com/sabberworm/PHP-CSS-Parser/issues",
-                "source": "https://github.com/sabberworm/PHP-CSS-Parser/tree/8.3.1"
+                "source": "https://github.com/sabberworm/PHP-CSS-Parser/tree/8.4.0"
             },
-            "time": "2020-06-01T09:10:00+00:00"
+            "time": "2021-12-11T13:40:54+00:00"
         },
         {
             "name": "scssphp/scssphp",
@@ -3796,12 +3799,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/scssphp/scssphp.git",
-                "reference": "c7e5f15c1af7206bdff1a392fea926fb40c8eb9f"
+                "reference": "bc8bece4e5e176973a832f3763049ddbba16e6fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/scssphp/scssphp/zipball/c7e5f15c1af7206bdff1a392fea926fb40c8eb9f",
-                "reference": "c7e5f15c1af7206bdff1a392fea926fb40c8eb9f",
+                "url": "https://api.github.com/repos/scssphp/scssphp/zipball/bc8bece4e5e176973a832f3763049ddbba16e6fd",
+                "reference": "bc8bece4e5e176973a832f3763049ddbba16e6fd",
                 "shasum": ""
             },
             "require": {
@@ -3862,7 +3865,7 @@
                 "issues": "https://github.com/scssphp/scssphp/issues",
                 "source": "https://github.com/scssphp/scssphp/tree/1.x"
             },
-            "time": "2021-09-18T21:44:18+00:00"
+            "time": "2021-12-13T11:55:16+00:00"
         },
         {
             "name": "symfony/config",
@@ -3948,12 +3951,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "f88dcb2f1188dd30a130ec45696be600fc51e3a3"
+                "reference": "9eb1c82d7e70e64b7fb78d0d435729a579690ca2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/f88dcb2f1188dd30a130ec45696be600fc51e3a3",
-                "reference": "f88dcb2f1188dd30a130ec45696be600fc51e3a3",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/9eb1c82d7e70e64b7fb78d0d435729a579690ca2",
+                "reference": "9eb1c82d7e70e64b7fb78d0d435729a579690ca2",
                 "shasum": ""
             },
             "require": {
@@ -4026,7 +4029,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-11-25T16:40:00+00:00"
+            "time": "2021-12-11T14:54:38+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -5055,12 +5058,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "b546181a4da7b056efb4b950641d7851b7e33a8b"
+                "reference": "c1d5c35ec398ae6c100170366bd7b322570aff85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/b546181a4da7b056efb4b950641d7851b7e33a8b",
-                "reference": "b546181a4da7b056efb4b950641d7851b7e33a8b",
+                "url": "https://api.github.com/repos/symfony/process/zipball/c1d5c35ec398ae6c100170366bd7b322570aff85",
+                "reference": "c1d5c35ec398ae6c100170366bd7b322570aff85",
                 "shasum": ""
             },
             "require": {
@@ -5109,7 +5112,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-11-28T14:52:41+00:00"
+            "time": "2021-12-11T14:36:29+00:00"
         },
         {
             "name": "symfony/service-contracts",
@@ -5869,9 +5872,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "civicrm/civicrm-packages": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
