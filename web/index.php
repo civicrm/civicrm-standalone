@@ -31,7 +31,7 @@ function invoke() {
   }
 }
 
-if (file_exists('../civicrm.settings.php')) {
+if (file_exists('../data/civicrm.settings.php')) {
   require_once '../vendor/autoload.php';
   require_once '../data/civicrm.settings.php';
   invoke();
