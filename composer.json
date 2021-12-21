@@ -1,9 +1,12 @@
 {
     "require": {
+        "cweagans/composer-patches": "1.7",
         "civicrm/civicrm-core": "5.44",
         "civicrm/civicrm-packages": "5.44",
-        "civicrm/civicrm-asset-plugin": "~1.1",
-        "cweagans/composer-patches": "1.7"
+        "civicrm/civicrm-asset-plugin": "~1.1"
+    },
+    "config": {
+        "preferred-install": "source"
     },
     "extra": {
         "compile-whitelist": ["civicrm/civicrm-core", "civicrm/composer-compile-lib"],
@@ -11,6 +14,11 @@
         "civicrm-asset": {
             "path": "web/assets/civicrm",
             "url": "/assets/civicrm"
+        },
+        "patches": {
+            "civicrm/civicrm-core": {
+                "PR#22227 CiviCRM Standalone support": "https://github.com/civicrm/civicrm-core/pull/22227.patch"
+            }
         }
     },
     "minimum-stability": "dev"
