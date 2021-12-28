@@ -1,6 +1,6 @@
 <?php
 
-$settingsFile = __DIR__ '/civicrm.settings.php';
+$settingsFile = __DIR__ '/data/civicrm.settings.php';
 define('CIVICRM_SETTINGS_PATH', $settingsFile);
 $error = @include_once($settingsFile);
 if ($error == false) {
