@@ -6,7 +6,13 @@
         "civicrm/civicrm-asset-plugin": "~1.1"
     },
     "config": {
-        "preferred-install": "source"
+        "preferred-install": "source",
+        "allow-plugins": {
+            "civicrm/civicrm-asset-plugin": true,
+            "cweagans/composer-patches": true,
+            "civicrm/composer-downloads-plugin": true,
+            "civicrm/composer-compile-plugin": true
+        }
     },
     "extra": {
         "compile-whitelist": ["civicrm/civicrm-core", "civicrm/composer-compile-lib"],
@@ -21,5 +27,6 @@
             }
         }
     },
+    "prefer-stable": true,
     "minimum-stability": "dev"
 }
