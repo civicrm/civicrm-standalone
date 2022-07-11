@@ -20,11 +20,6 @@
         "civicrm-asset": {
             "path": "web/assets/civicrm",
             "url": "/assets/civicrm"
-        },
-        "patches": {
-            "civicrm/civicrm-core": {
-                "PR#22227 CiviCRM Standalone support": "https://github.com/civicrm/civicrm-core/pull/22227.patch"
-            }
         }
     },
     "prefer-stable": true,
