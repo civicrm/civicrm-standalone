@@ -1,10 +1,13 @@
 {
     "require": {
         "cweagans/composer-patches": ">=1.7",
-        "civicrm/civicrm-core": "dev-master",
+        "civicrm/civicrm-core": "dev-artfulrobot-standalone",
         "civicrm/civicrm-packages": "dev-master",
         "civicrm/civicrm-asset-plugin": "~1.1"
     },
+    "repositories": [
+        { "type": "vcs", "url": "https://github.com/artfulrobot/civicrm-core.git" }
+    ],
     "config": {
         "preferred-install": "source",
         "allow-plugins": {
