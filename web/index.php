@@ -51,9 +51,10 @@ else {
     \Civi\Setup::init([
       // This is just enough information to get going.
       'cms'     => 'Standalone',
-      'srcPath' => $projectRootPath,
+      'srcPath' => $civiCorePath,
     ]);
     $ctrl = \Civi\Setup::instance()->createController()->getCtrl();
+
     $ctrl->setUrls([
       // The URL of this setup controller. May be used for POST-backs
       'ctrl'             => '/civicrm', // @todo this had url('civicrm') ?
