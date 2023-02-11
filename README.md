@@ -44,10 +44,18 @@ The install methods below assume using the artfulrobot forks, and I've tagged ev
 Using [artfulrobot's CiviCRM buildkit](https://github.com/artfulrobot/civicrm-buildkit/):
 
 ```
+# Clone this fork/branch:
+git clone git@github.com:artfulrobot/civicrm-buildkit.git -b artfulrobot-standalone
+
+# Swap out the cv for artfulrobot fork:
+cd civicrm-buildkit
+./use-artfulrobot-cv 
+
+# If everything else is in place you can now use civibuild:
 civibuild create mytest1 --type standalone-clean
 ```
 
-Note that this will always install the latest master/main branch.
+Note that this will always install the latest master/main branch (technically, the artfulrobot fork of master)
 
 ## Install with composer
 
