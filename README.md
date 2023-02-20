@@ -26,6 +26,8 @@ Development is very much work-in-progress and trying to get PRs merged into 4 pr
 
 The install methods below assume using the artfulrobot forks, and I've tagged everything with this name explicitly to be clear.
 
+![Diagram showing how repositories relate](images/repos.excalidraw.png)
+
 ## Project layout
 
 - This repo as top dir of project
