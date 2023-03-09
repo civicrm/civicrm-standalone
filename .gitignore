@@ -1,1 +1,9 @@
-vendor
+/data/
+!/data/README.md
+/vendor/
+/web/assets/
+/web/upload/
+
+.idea
+*~
+*.bak
