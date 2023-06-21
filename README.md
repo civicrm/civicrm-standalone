@@ -18,7 +18,7 @@ There are four key repositories:
 1. [Buildkit](https://github.com/civicrm/civicrm-buildkit/) *The standalone work is now included in the main branch.*
 2. [cv](https://github.com/civicrm/cv) *The standalone work is now included in the main branch.*
 3. [This repo (civicrm-standalone)](https://github.com/civicrm/civicrm-standalone)
-4. [CiviCRM Core](#)
+4. **@artfulrobot fork of** [CiviCRM Core](https://github.com/artfulrobot/civicrm-core/tree/artfulrobot-standalone)
 5. [Standalone Users](https://lab.civicrm.org/extensions/standaloneusers/) extension.
 
 ![Diagram showing how repositories relate](images/repos.excalidraw.png)
@@ -26,12 +26,12 @@ There are four key repositories:
 In words:
 
 - Buildkit provides the `civibuild` command for creating local instances of 
-  CiviCRM.
+  CiviCRM. It includes instructions for fetching this repo.
 
 - Those instances include the `cv` command/tool, and have this repo as the project's 
   webroot.
 
-- Code in this repo pulls in a branch of CiviCRM core.
+- The composer.json file in this repo pulls in the @artfulrobot fork/branch of CiviCRM core.
 
 - Separately, the [standalone users 
   extension](https://lab.civicrm.org/extensions/standaloneusers/) is then installed on the instance in the normal way for extensions, to provide the access restrictions.
