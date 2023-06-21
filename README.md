@@ -13,47 +13,46 @@ We are using CiviCRM's Gitlab for issues/discussion, and Github pull-requests fo
 
 We also have a [CiviCRM Standalone channel](https://chat.civicrm.org/civicrm/channels/standalone) on CiviCRM's chat.
 
-## ⚠ Active development forks
+There are four key repositories:
 
-Getting install working properly and consistently requires code from no fewer than four repositories to work together! These are:
-
-1. This repo
-2. Buildkit
-3. CiviCRM Core
-4. cv
-
-Development is very much work-in-progress and trying to get PRs merged into 4 projects at each step is tedious. @artfulrobot (Rich) has been doing a lot of work on this recently, and has developed a set of forks of these four repos that all work together. They do not want to *gatekeep* this work, but anyone wanting to work on this will need themselves to fork 4 repos and maintaining all those separate sets of 4 forks is a nightmare; if you want to be able to push to @artfulrobot forks, please ask. **Also, if anyone cleverer than me (Rich) knows a better way to do this, please get in touch!**
-
-The install methods below assume using the artfulrobot forks, and I've tagged everything with this name explicitly to be clear.
+1. [Buildkit](https://github.com/civicrm/civicrm-buildkit/) *The standalone work is now included in the main branch.*
+2. [cv](https://github.com/civicrm/cv) *The standalone work is now included in the main branch.*
+3. [This repo (civicrm-standalone)](https://github.com/civicrm/civicrm-standalone)
+4. [CiviCRM Core](#)
+5. [Standalone Users](https://lab.civicrm.org/extensions/standaloneusers/) extension.
 
 ![Diagram showing how repositories relate](images/repos.excalidraw.png)
 
+In words:
+
+- Buildkit provides the `civibuild` command for creating local instances of 
+  CiviCRM.
+
+- Those instances include the `cv` command/tool, and have this repo as the project's 
+  webroot.
+
+- Code in this repo pulls in a branch of CiviCRM core.
+
+- Separately, the [standalone users 
+  extension](https://lab.civicrm.org/extensions/standaloneusers/) is then installed on the instance in the normal way for extensions, to provide the access restrictions.
+
 ## Project layout
 
-- This repo as top dir of project
-   - `data/` holds non-web-accessible files including ConfigAndLog, Smarty 
-     templates and settings files.
-   - `web/` holds web-accessible files:
-      - `index.php` This is the main router/request handler.
-      - `upload/` holds all the other gubbins, including the `ext/` dir for 
-         extensions.
-   - `vendor/civicrm/` holds all the composer-sourced code, notably including:
-      - `civicrm-core` The core files
+This repo as top dir of project:
+
+- `data/` holds non-web-accessible files including ConfigAndLog, Smarty 
+ templates and settings files.
+- `web/` holds web-accessible files:
+  - `index.php` This is the main router/request handler.
+  - `upload/` holds all the other gubbins, including the `ext/` dir for 
+     extensions.
+- `vendor/civicrm/` holds all the composer-sourced code, notably including:
+  - `civicrm-core` The core files
 
 
 ## Install with buildkit
 
-Using [artfulrobot's CiviCRM buildkit](https://github.com/artfulrobot/civicrm-buildkit/):
-
 ```
-# Clone this fork/branch:
-git clone git@github.com:artfulrobot/civicrm-buildkit.git -b artfulrobot-standalone
-
-# Swap out the cv for artfulrobot fork:
-cd civicrm-buildkit
-./use-artfulrobot-cv 
-
-# If everything else is in place you can now use civibuild:
 civibuild create mytest1 --type standalone-clean
 ```
 
@@ -67,7 +66,7 @@ Clone this repo as the root of your project and pull in dependencies:
 
 ```
 cd /var/www/
-git clone https://github.com/artfulrobot/civicrm-standalone standalone
+git clone git@github.com:civicrm/civicrm-standalone.git standalone
 cd standalone
 composer install
 ```
