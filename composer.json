@@ -1,7 +1,7 @@
 {
     "require": {
         "cweagans/composer-patches": ">=1.7",
-        "civicrm/civicrm-core": "dev-artfulrobot-standalone",
+        "civicrm/civicrm-core": "dev-artfulrobot-standalone-core-1",
         "civicrm/civicrm-packages": "dev-master",
         "civicrm/civicrm-asset-plugin": "~1.1"
     },
