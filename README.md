@@ -18,8 +18,8 @@ There are four key repositories:
 1. [Buildkit](https://github.com/civicrm/civicrm-buildkit/) *The standalone work is now included in the main branch.*
 2. [cv](https://github.com/civicrm/cv) *The standalone work is now included in the main branch.*
 3. [This repo (civicrm-standalone)](https://github.com/civicrm/civicrm-standalone)
-4. **@artfulrobot fork of** [CiviCRM Core](https://github.com/artfulrobot/civicrm-core/tree/artfulrobot-standalone)
-5. [Standalone Users](https://lab.civicrm.org/extensions/standaloneusers/) extension.
+4. Temporarily: **@artfulrobot fork of** [CiviCRM Core](https://github.com/artfulrobot/civicrm-core/tree/artfulrobot-standalone-core-1)
+5. <del>[Standalone Users](https://lab.civicrm.org/extensions/standaloneusers/) extension.</del> This is now moved to being a core extension.
 
 ![Diagram showing how repositories relate](images/repos.excalidraw.png)
 
@@ -33,8 +33,8 @@ In words:
 
 - The composer.json file in this repo pulls in the @artfulrobot fork/branch of CiviCRM core.
 
-- Separately, the [standalone users 
-  extension](https://lab.civicrm.org/extensions/standaloneusers/) is then installed on the instance in the normal way for extensions, to provide the access restrictions.
+- The standalone users core extension is then installed on the instance using 
+  the command line (it will be hidden from the extensions UI), to provide the access restrictions.
 
 ## Project layout
 
@@ -58,9 +58,7 @@ civibuild create mytest1 --type standalone-clean
 
 Note that this will always install the latest master/main branch (technically, the artfulrobot fork of master)
 
-You should now be able to see CiviCRM up and running.
-
-**Next steps: get authentication set up. For this you'll need to install the [standaloneusers extension](https://lab.civicrm.org/extensions/standaloneusers) - see README there.**
+You should now be able to see CiviCRM up and running. Jump to Next Steps.
 
 ## Install with composer
 
@@ -97,6 +95,14 @@ mysql -e "CREATE DATABASE standalone_civicrm;"
 Now visit the site in your browser. You should get the installer page, but with lots of red notices about database stuff. That's ok, it's just because it doesn't know the DSN for the database. Edit the DSN yourself at the bottom of the page and hit Apply.
 
 At the end you should be able to access /civicrm
+
+## Next steps
+
+1. Enable and configure the authx extension from **Administer » System Settings » Authentication**. You'll need to add *User Password* to the **Acceptable credentials (HTTP Session Login) select. And hit **Save**.
+
+2. Install the standaloneusers extension by `cv en standaloneusers` (it is a core extension, so will already be part of your docroot)
+
+3. Read the standaloneusers/README.md
 
 ## About CiviCRM
 
