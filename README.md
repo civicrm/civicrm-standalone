@@ -58,6 +58,10 @@ civibuild create mytest1 --type standalone-clean
 
 Note that this will always install the latest master/main branch (technically, the artfulrobot fork of master)
 
+You should now be able to see CiviCRM up and running.
+
+**Next steps: get authentication set up. For this you'll need to install the [standaloneusers extension](https://lab.civicrm.org/extensions/standaloneusers) - see README there.**
+
 ## Install with composer
 
 If you don't want the buildkit environment and you want to test the web-based installer, you can do it this way. It assumes you have setup your own httpd/php/sql services and configured them.
