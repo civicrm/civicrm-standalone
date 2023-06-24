@@ -18,8 +18,7 @@ There are four key repositories:
 1. [Buildkit](https://github.com/civicrm/civicrm-buildkit/) *The standalone work is now included in the main branch.*
 2. [cv](https://github.com/civicrm/cv) *The standalone work is now included in the main branch.*
 3. [This repo (civicrm-standalone)](https://github.com/civicrm/civicrm-standalone)
-4. Temporarily: **@artfulrobot fork of** [CiviCRM Core](https://github.com/artfulrobot/civicrm-core/tree/artfulrobot-standalone-core-1)
-5. <del>[Standalone Users](https://lab.civicrm.org/extensions/standaloneusers/) extension.</del> This is now moved to being a core extension.
+4. CiviCRM Core, of course. Standalone support and the Standalone Users extension (which was in a [separate repo](https://lab.civicrm.org/extensions/standaloneusers/)) are all in core now.
 
 ![Diagram showing how repositories relate](images/repos.excalidraw.png)
 
@@ -98,11 +97,17 @@ At the end you should be able to access /civicrm
 
 ## Next steps
 
-1. Enable and configure the authx extension from **Administer » System Settings » Authentication**. You'll need to add *User Password* to the **Acceptable credentials (HTTP Session Login) select. And hit **Save**.
+You need authx enabled and configured, and the standaloneusers extension installed.
 
-2. Install the standaloneusers extension by `cv en standaloneusers` (it is a core extension, so will already be part of your docroot)
+You can do this at the command line with
 
-3. Read the standaloneusers/README.md
+```
+cv en authx standaloneusers && cv vset +l authx_login_cred+=pass
+```
+
+...or from **Administer » System Settings » Authentication**. You'll need to add *User Password* to the **Acceptable credentials (HTTP Session Login) select. And hit **Save**. Then install the the standaloneusers extension by `cv en standaloneusers` (it is a core extension, so will already be part of your docroot) - you can't do this from the UI as it's hidden.
+
+Read the [standaloneusers/README.md](https://github.com/civicrm/civicrm-core/blob/master/ext/standaloneusers/README.md)
 
 ## About CiviCRM
 
