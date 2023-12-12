@@ -1,15 +1,12 @@
 {
     "require": {
-        "php": "~7.3 || ~8",
+        "php": "~7.4 || ~8",
         "cweagans/composer-patches": ">=1.7",
         "civicrm/civicrm-core": "dev-master",
         "civicrm/civicrm-packages": "dev-master",
         "civicrm/civicrm-asset-plugin": "~1.1"
     },
     "config": {
-        "platform": {
-            "php": "7.3.0"
-        },
         "preferred-install": "source",
         "allow-plugins": {
             "civicrm/civicrm-asset-plugin": true,
