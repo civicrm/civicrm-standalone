@@ -1,8 +1,10 @@
 # CiviCRM Standalone (Project Template)
 
-This is a project-template for [CiviCRM Standalone](https://lab.civicrm.org/dev/core/-/wikis/standalone) (based on [composer](https://getcomposer.org/)). You may use this to initialize a new web-site running [CiviCRM](https://civicrm.org) -- *without* requiring any other content management system (such as Drupal or WordPress).
+This is a project-template for [CiviCRM Standalone](https://lab.civicrm.org/dev/core/-/wikis/standalone). You may use this to initialize a new web-site running [CiviCRM](https://civicrm.org) -- *without* requiring any other content management system (such as Drupal or WordPress).
 
-__TIP__: If you are planning to _develop patches for CiviCRM Standalone_, you should instead use [civibuild's `standalone-dev` template](https://github.com/civicrm/civicrm-buildkit/tree/master/app/config/standalone-dev). In that template, it is easier to do `git` operations on the canonical repositories. By contrast, this template makes it easier to apply upgrades and manage third-party add-ons.
+This template is based on [composer](https://getcomposer.org/). It is geared toward site-builders. You may use `composer` for site-building operations -- such as upgrading the application and managing third-party add-ons.
+
+__TIP__: If you are planning to _develop patches for CiviCRM Standalone_, you should use a different template: [civibuild's `standalone-dev`](https://github.com/civicrm/civicrm-buildkit/tree/master/app/config/standalone-dev). In that template, it is easier to manage `git` (branches, commits, etc) for the canonical repositories.
 
 __See also__: [(dev/core#2998) Epic: Re-implement CiviCRM Standalone (CMS-less CiviCRM)](https://lab.civicrm.org/dev/core/-/issues/2998)
 
