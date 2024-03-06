@@ -37,7 +37,7 @@ In words:
 - Those instances include the `cv` command/tool, and have this repo as the project's 
   webroot.
 
-- The composer.json file in this repo pulls in the @artfulrobot fork/branch of CiviCRM core.
+- The composer.json file in this repo pulls in the master branch of CiviCRM core.
 
 - The standalone users core extension is then installed on the instance using 
   the command line (it will be hidden from the extensions UI), to provide the access restrictions.
@@ -63,7 +63,7 @@ This repo as top dir of project:
 civibuild create mytest1 --type standalone-clean
 ```
 
-Note that this will always install the latest master/main branch (technically, the artfulrobot fork of master)
+Note that this will always install the latest master/main branch.
 
 You should now be able to see CiviCRM up and running. Jump to Next Steps.
 
