@@ -17,18 +17,10 @@
     },
     "extra": {
         "compile-whitelist": ["civicrm/civicrm-core", "civicrm/composer-compile-lib"],
-        "compile": [
-            {
-                "title": "Install scaffolding for CiviCRM standalone",
-                "run": "@php-method \\Civi\\Setup\\StandaloneScaffold::create",
-                "scaffold-dir": ".",
-                "scaffold-mode": "copy"
-            }
-        ],
         "enable-patching": "true",
         "civicrm-asset": {
-            "path": "web/assets/civicrm",
-            "url": "/assets/civicrm"
+            "path": "public/assets",
+            "url": "/public/assets"
         }
     },
     "prefer-stable": true,

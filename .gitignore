@@ -1,12 +1,15 @@
-/civicrm.config.php.standalone
-/data/
-!/data/README.md
-/vendor/
-/web/assets/
-/web/upload/
-/web/index.php
-/web/.htaccess
-
+# misc
 .idea
 *~
 *.bak
+
+# composer lockfile and installed packages
+/composer.lock
+/vendor
+
+# site data
+/private
+/public
+/extensions
+
+
