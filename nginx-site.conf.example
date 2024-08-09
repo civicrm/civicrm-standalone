@@ -1,0 +1,105 @@
+#
+# This file is offered as a starting point for hosting CiviCRM Standalone with NGINX
+#
+# It has not really been tested
+# Your server may be quite different
+# Your needs may be different
+#
+
+upstream php-fpm {
+    server unix://path/to/fpm/php-fpm.sock;
+}
+
+server {
+  listen 80;
+  listen [::]:80;
+
+  server_name civicrm.example.org;
+
+  location / {
+    return 301 https://civicrm.example.org$request_uri;
+  }
+  
+  # Allow "Well-Known URIs" as per RFC 5785
+  location ^~ /.well-known/acme-challenge/ {
+    root /var/www/letsencrypt;
+  }
+}
+
+server {
+  listen 443 ssl;
+  listen [::]:443 ssl;
+
+  server_name civicrm.example.org;
+  root /var/www/html/civicrm.example.org;
+
+  index index.php;
+  charset utf-8;
+
+  # public key
+  ssl_certificate     /etc/letsencrypt/civicrm.example.org/live.crt;
+  ssl_certificate_key /etc/letsencrypt/civicrm.example.org/live.key;
+
+  ssl_prefer_server_ciphers on;
+  add_header Strict-Transport-Security max-age=15768000;
+
+  # https://wiki.mozilla.org/Security/Server_Side_TLS#Modern_compatibility
+  ssl_ciphers "EECDH+AESGCM:EDH+AESGCM:ECDHE-RSA-AES128-GCM-SHA256:AES256+EECDH:DHE-RSA-AES128-GCM-SHA256:AES256+EDH:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:ECDHE-RSA-DES-CBC3-SHA:EDH-RSA-DES-CBC3-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:DES-CBC3-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4";
+
+  add_header Strict-Transport-Security max-age=31622400;
+
+  location / {
+    try_files $uri $uri/ /index.php?$args;
+  }
+
+  location ~ \.php$ {
+    fastcgi_split_path_info ^(.+\.php)(/.+)$;
+
+    # Check that the PHP script exists before passing it
+    try_files $fastcgi_script_name =404;
+
+    fastcgi_index index.php;
+    error_page 404 /index.php;
+
+    fastcgi_pass php-fpm;
+  }
+
+  location = /robots.txt {
+    allow all;
+    log_not_found off;
+    access_log off;
+  }
+
+  # Very rarely should these ever be accessed outside of your lan
+  location ~* \.(txt|log)$ {
+    allow 192.168.0.0/16;
+    deny all;
+  }
+
+  location ~ \..*/.*\.php$ {
+    return 403;
+  }
+
+  # block access to the private sub-directory
+  location ~ ^/private/ {
+    return 403;
+  }
+
+  # Allow "Well-Known URIs" as per RFC 5785
+  location ~* ^/.well-known/ {
+    allow all;
+  }
+
+  # Block access to "hidden" files and directories whose names begin with a
+  # period. This includes directories used by version control systems such
+  # as Subversion or Git to store control files.
+  location ~ (^|/)\. {
+    return 403;
+  }
+
+  # Protect files and directories from prying eyes.
+  location ~* \.(engine|inc|install|make|module|profile|po|sh|.*sql|theme|twig|tpl(\.php)?|xtmpl|yml)(~|\.sw[op]|\.bak|\.orig|\.save)?$|^(\.(?!well-known).*|Entries.*|Repository|Root|Tag|Template|composer\.(json|lock)|web\.config)$|^#.*#$|\.php(~|\.sw[op]|\.bak|\.orig|\.save)$ {
+    deny all;
+    return 404;
+  }
+}
