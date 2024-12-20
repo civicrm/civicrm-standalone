@@ -1,0 +1,177 @@
+#
+# This file is offered as a starting point for hosting CiviCRM Standalone with NGINX
+#
+# It has not really been tested
+# Your server may be quite different
+# Your needs may be different
+#
+# Where configuration allows, we use a security-first aproach: ban everything, then
+#
+# - Only allow running php files via index.php and /extern/ (deprecated)
+#
+# - Only allow accessing other files from expected places and with expected extensions.
+#
+# @todo Replace example.org with your domain, including subdomain if using.
+# @todo scan for @todo in the file!
+
+
+# Define your upstream. You may already have this defined elsewhere.
+# @todo check/update and if using a different name to php-fpm, update references below.
+upstream php-fpm {
+  server unix://path/to/fpm/php-fpm.sock;
+}
+
+# Create a macro/variable so we can limit the http methods we allow.
+map $request_method $not_an_allowed_http_method {
+    default 1;
+    OPTIONS 0;
+    GET 0;
+    HEAD 0;
+    POST 0;
+}
+
+# Define a nicer log format - using JSON. This makes searching/summarising your logs much easier.
+# Optional. If you don't want it, remove jsonlog from the access_log directive below.
+# rq = request. rs = response.
+log_format jsonlog escape=json
+  '{'
+    '"rsTime":"$time_iso8601",'
+    '"rsStatus":"$status",'
+    '"rqIp":"$remote_addr",'
+    '"rq":"$request",'
+    '"rqUser":"$remote_user",'
+    '"rqRef":"$http_referer",'
+    '"rqUA":"$http_user_agent",'
+    '"rsB":"$body_bytes_sent",'
+    '"rsTook":"$request_time",'
+    '"phpTook":"$upstream_response_time"'
+  '}';
+
+# Redirect http to https
+server {
+  listen 80;
+  listen [::]:80;
+  server_name example.org;
+  # Allow "Well-Known URIs" as per RFC 5785
+  location ^~ /.well-known/ {
+    try_files $uri 404;
+  }
+  return 301 https://example.org$request_uri;
+}
+
+server {
+  listen 443 ssl;
+  server_name example.org;
+  root /var/www/example.org/;
+  charset utf-8;
+
+  error_log /var/log/nginx/error.log;
+  # or:
+  # error_log /var/log/nginx/error.log debug;
+
+  access_log /var/log/nginx/access.log jsonlog;
+  # or, without the jsonlog bit:
+  # access_log /var/log/nginx/access.log;
+
+  # @todo paths to your SSL here. (Or let certbot replace these for you.)
+  ssl_certificate /etc/ssl/certs/ssl-cert-snakeoil.pem;
+  ssl_certificate_key /etc/ssl/private/ssl-cert-snakeoil.key;
+
+  # @todo You may want to limit the ssl_ciphers here. This is a moving target.
+  # https://wiki.mozilla.org/Security/Server_Side_TLS#Modern_compatibility
+  # Example at time of writing.
+  # ssl_prefer_server_ciphers on;
+  # ssl_ciphers "EECDH+AESGCM:EDH+AESGCM:ECDHE-RSA-AES128-GCM-SHA256:AES256+EECDH:DHE-RSA-AES128-GCM-SHA256:AES256+EDH:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:ECDHE-RSA-DES-CBC3-SHA:EDH-RSA-DES-CBC3-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:DES-CBC3-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4";
+
+  # Say that we expect https for up to 1 year.
+  # @todo review
+  add_header Strict-Transport-Security max-age=31622400;
+
+  fastcgi_keep_conn on; # keep alive to the FCGI upstream
+  index index.php;
+
+  # Only accept expected http methods.
+  if ($not_an_allowed_http_method) {
+    return 405;
+  }
+
+  # Note: nginx processes different types of 'location' block in priority order,
+  # somewhat regardless of the order they are declared here. To help a human reason this,
+  # the location blocks are mostly presented in priority order.
+
+  # ---------------------
+  # Exact match locations
+  # ---------------------
+
+  location = / {
+    include fastcgi.conf;
+    fastcgi_param SCRIPT_NAME        /index.php;
+    fastcgi_param SCRIPT_FILENAME    $document_root/index.php;
+    fastcgi_param QUERY_STRING       q=$uri&$args;
+    fastcgi_pass php-fpm;
+  }
+
+  location = /robots.txt {
+    try_files $uri 404;
+    # @todo consider:
+    # log_not_found off;
+    # access_log off;
+  }
+
+  # ---------------------
+  # Longest prefix match locations. Identified by ^~ this is a plain-text match (not a regex!)
+  # ---------------------
+
+  # All CiviCRM paths are under /civicrm/ (because CiviCRM also runs in CMS contexts and uses this as a namespace)
+  location ^~ /civicrm/ {
+
+    # Some requests can be slow, we can allow them more time to run.
+    # Note that PHP FPM also has timeouts. If nginx's timeouts exceed PHP's
+    # then PHP will keep running after nginx gives up waiting for it.
+    location ~*^/civicrm/(dashboard/|contact/dedupefind|contact/import|activity/search|contribute/import|ajax/status\?|payment/ipn/\d+) {
+      fastcgi_index index.php;
+      include fastcgi.conf;
+      fastcgi_read_timeout 300s;
+      fastcgi_param SCRIPT_NAME        /index.php;
+      fastcgi_param SCRIPT_FILENAME    $document_root/index.php;
+      fastcgi_param QUERY_STRING       q=$uri&$args;
+      fastcgi_pass php-fpm;
+    }
+
+    # All requests go via Civi with the default read timeout.
+    fastcgi_index index.php;
+    include fastcgi.conf;
+    fastcgi_param SCRIPT_NAME        /index.php;
+    fastcgi_param SCRIPT_FILENAME    $document_root/index.php;
+    fastcgi_param QUERY_STRING       q=$uri&$args;
+    fastcgi_pass php-fpm;
+  }
+
+  # ---------------------
+  # Regex match locations (these are processed after longest-prefix)
+  # ---------------------
+
+  # Allow access to reasonable assets shipped with core, extensions, or from the public dir.
+  # @todo do you need extra extensions here?
+  # @todo if, say, you want to allow downloading of .sql or .zip or .tar etc. files from /public
+  # then create a separate rule that covers strictly what you expect and nothing wider.
+  # You want to ensure that any files a developer might accidentally create/leave around
+  # like backups, sql dumps etc. are not world-accessible.
+  location ~ ^/(public|core|ext)/.*\.(png|css|jpg|js|mjs|gif|ico|svg|woff2|html)$ {
+    # Return the file if it exists, or a 404
+    try_files $uri 404;
+  }
+
+  ## Allow direct access to running known PHP files in 'extern/' (deprecated)
+  location ~ ^/core/extern/(authorizeIPN|cxn|ipn|open|rest|soap|url|widget).php$ {
+    fastcgi_index index.php;
+    include fastcgi.conf;
+    fastcgi_pass php-fpm;
+  }
+
+  # Default location.
+  location / {
+    return 404;
+  }
+}
+
