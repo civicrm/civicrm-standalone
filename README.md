@@ -51,7 +51,7 @@ This repo as top dir of project:
  templates, settings, temporary files (compiler cache and tmp) and private uploads.
 - `public/` holds web-accessible and web-writable files such as images and public assets genereated dynamically by CiviCRM (packages and core).
 - `index.php` - the main router/request handler which must be in the webroot.
-- `ext/` store CiviCRM extensions. These are usually web-accessible to allow installing extensions through the UI, but need not be if extensions are managed as part of the site build process.
+- `ext/` store CiviCRM extensions. This folder is usually web-writeable to allow installing extensions through the UI, but need not be if extensions are managed as part of the site build process.
 - `vendor/civicrm/` holds all the composer-sourced code, notably including:
   - `civicrm-core` The core files
 - `civicrm.standalone.php` - provides a common codepath for `index.php`, `cv`, and so on, to locate and run the CiviCRM autoloader, classloader and settingsloader.
