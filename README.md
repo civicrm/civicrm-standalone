@@ -47,15 +47,16 @@ In words:
 
 This repo as top dir of project:
 
-- `data/` holds non-web-accessible files including ConfigAndLog, Smarty 
- templates and settings files.
-- `web/` holds web-accessible files:
-  - `index.php` This is the main router/request handler.
-  - `upload/` holds all the other gubbins, including the `ext/` dir for 
-     extensions.
+- `private/` holds non-web-accessible files including logs, Smarty 
+ templates, settings, temporary files (compiler cache and tmp) and private uploads.
+- `public/` holds web-accessible and web-writable files such as images and public assets genereated dynamically by CiviCRM (packages and core).
+- `index.php` - the main router/request handler which must be in the webroot.
+- `ext/` store CiviCRM extensions. These are usually web-accessible to allow installing extensions through the UI, but need not be if extensions are managed as part of the site build process.
 - `vendor/civicrm/` holds all the composer-sourced code, notably including:
   - `civicrm-core` The core files
+- `civicrm.standalone.php` - provides a common codepath for `index.php`, `cv`, and so on, to locate and run the CiviCRM autoloader, classloader and settingsloader.
 
+Note: the file structure can be updated to have a nested webroot, (for example, `web`). In which case, place the `public/`, `index.php`, `.htaccess` and optionally the `ext/` files and directories under the nested webroot. Then update `civicrm.standalone.php` and `index.php` and `composer.json` (paths to the public assest) to reflect the new structure. You may also need to update the paths in `private/civicrm.settings.php`.
 
 ## Install with buildkit
 
