@@ -169,6 +169,14 @@ server {
     fastcgi_pass php-fpm;
   }
 
+
+  # @todo If you have migrated from Drupal7 and moved your images
+  # to the new location, you can use something like this which will
+  # allow requests to the old paths to serve the images from their new paths.
+  # location /sites/default/files/civicrm/persist/contribute/images/ {
+  #   alias /var/www/example.org/docroot/public/media/images/;
+  # }
+
   # Default location.
   location / {
     return 404;
