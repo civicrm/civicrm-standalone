@@ -157,7 +157,7 @@ server {
   # then create a separate rule that covers strictly what you expect and nothing wider.
   # You want to ensure that any files a developer might accidentally create/leave around
   # like backups, sql dumps etc. are not world-accessible.
-  location ~ ^/(public|core|ext)/.*\.(png|css|jpg|js|mjs|gif|ico|svg|woff2|html)$ {
+  location ~ ^/(public|core|ext)/.*\.(png|css|jpg|js|mjs|json|webp|gif|ico|svg|woff2|html)$ {
     # Return the file if it exists, or a 404
     try_files $uri 404;
   }
