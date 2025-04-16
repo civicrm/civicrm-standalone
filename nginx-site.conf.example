@@ -62,7 +62,13 @@ server {
 server {
   listen 443 ssl;
   server_name example.org;
-  root /var/www/example.org/;
+  # The docroot is the directory in which you find the index.php file.
+  # If you extract a zip file from the releases page, you'll see everything
+  # under a civicrm-standalone dir. You can rename it whatever you want
+  # (e.g. docroot or web or publicHtml are common) - it doesn't matter
+  # as long as the following path points to it.
+  root /var/www/example.org/civicrm-standalone;
+
   charset utf-8;
 
   error_log /var/log/nginx/error.log;
