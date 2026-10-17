@@ -7,7 +7,9 @@
         "civicrm/civicrm-asset-plugin": "~1.1"
     },
     "config": {
-        "preferred-install": "source",
+        "preferred-install": {
+            "civicrm/*": "source"
+        },
         "allow-plugins": {
             "civicrm/civicrm-asset-plugin": true,
             "cweagans/composer-patches": true,
